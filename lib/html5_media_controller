@@ -1,0 +1,48 @@
+class Html5_Player
+	# def initialize
+
+	# end
+
+	def pause
+		execute_script("pause()")
+	end
+
+	def play
+		execute_script("play()")
+	end
+
+	def get_current_time
+		execute_script("currentTime")
+	end
+
+	def get_duration
+		execute_script("duration")
+	end
+
+	def get_volume
+		execute_script("volume")
+	end
+
+	def is_muted?
+		execute_script("muted")
+	end
+
+	def is_finished_playback?
+		execute_script("ended")
+	end
+
+	def is_paused?
+		execute_script("paused")
+	end
+
+	def is_seeking?
+		execute_script("seeking")
+	end
+
+	private
+	def execute_script(action)
+		script = "return document.getElementsByTagName('video').#{action}"
+		$Logger.log_info("HTML5 Media Event: #{action}")
+		$driver.execute_script(script)
+	end
+end
